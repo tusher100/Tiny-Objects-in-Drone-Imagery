@@ -1,0 +1,667 @@
+this session will run: [('default', 0), ('default', 1), ('ot_nwd', 0), ('ot_nwd', 1)]
+Downloading https://github.com/ultralytics/assets/releases/download/v8.3.0/yolov8n.pt to 'yolov8n.pt'...
+100%|██████████| 6.25M/6.25M [00:00<00:00, 25.5MB/s]
+New https://pypi.org/project/ultralytics/8.4.177 available 😃 Update with 'pip install -U ultralytics'
+Ultralytics 8.3.0 🚀 Python-3.13.15 torch-2.11.0+cu128 CUDA:0 (Tesla T4, 14912MiB)
+engine/trainer: task=detect, mode=train, model=yolov8n.pt, data=/kaggle/working/visdrone.yaml, epochs=15, time=None, patience=100, batch=4, imgsz=960, save=True, save_period=-1, cache=False, device=0, workers=2, project=/kaggle/working/runs_budget60, name=default_s0, exist_ok=True, pretrained=True, optimizer=auto, verbose=False, seed=0, deterministic=False, single_cls=False, rect=False, cos_lr=False, close_mosaic=10, resume=False, amp=True, fraction=1.0, profile=False, freeze=None, multi_scale=False, overlap_mask=True, mask_ratio=4, dropout=0.0, val=True, split=val, save_json=False, save_hybrid=False, conf=None, iou=0.7, max_det=300, half=False, dnn=False, plots=False, source=None, vid_stride=1, stream_buffer=False, visualize=False, augment=False, agnostic_nms=False, classes=None, retina_masks=False, embed=None, show=False, save_frames=False, save_txt=False, save_conf=False, save_crop=False, show_labels=True, show_conf=True, show_boxes=True, line_width=None, format=torchscript, keras=False, optimize=False, int8=False, dynamic=False, simplify=True, opset=None, workspace=4, nms=False, lr0=0.01, lrf=0.01, momentum=0.937, weight_decay=0.0005, warmup_epochs=3.0, warmup_momentum=0.8, warmup_bias_lr=0.1, box=7.5, cls=0.5, dfl=1.5, pose=12.0, kobj=1.0, label_smoothing=0.0, nbs=64, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, degrees=0.0, translate=0.1, scale=0.5, shear=0.0, perspective=0.0, flipud=0.0, fliplr=0.5, bgr=0.0, mosaic=1.0, mixup=0.0, copy_paste=0.0, copy_paste_mode=flip, auto_augment=randaugment, erasing=0.4, crop_fraction=1.0, cfg=None, tracker=botsort.yaml, save_dir=/kaggle/working/runs_budget60/default_s0
+Downloading https://ultralytics.com/assets/Arial.ttf to '/root/.config/Ultralytics/Arial.ttf'...
+100%|██████████| 755k/755k [00:00<00:00, 5.29MB/s]
+Overriding model.yaml nc=80 with nc=10
+
+                   from  n    params  module                                       arguments                     
+  0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]                 
+  1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]                
+  2                  -1  1      7360  ultralytics.nn.modules.block.C2f             [32, 32, 1, True]             
+  3                  -1  1     18560  ultralytics.nn.modules.conv.Conv             [32, 64, 3, 2]                
+  4                  -1  2     49664  ultralytics.nn.modules.block.C2f             [64, 64, 2, True]             
+  5                  -1  1     73984  ultralytics.nn.modules.conv.Conv             [64, 128, 3, 2]               
+  6                  -1  2    197632  ultralytics.nn.modules.block.C2f             [128, 128, 2, True]           
+  7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]              
+  8                  -1  1    460288  ultralytics.nn.modules.block.C2f             [256, 256, 1, True]           
+  9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5]                 
+ 10                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 11             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 12                  -1  1    148224  ultralytics.nn.modules.block.C2f             [384, 128, 1]                 
+ 13                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 14             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 15                  -1  1     37248  ultralytics.nn.modules.block.C2f             [192, 64, 1]                  
+ 16                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+ 17            [-1, 12]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 18                  -1  1    123648  ultralytics.nn.modules.block.C2f             [192, 128, 1]                 
+ 19                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+ 20             [-1, 9]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 21                  -1  1    493056  ultralytics.nn.modules.block.C2f             [384, 256, 1]                 
+ 22        [15, 18, 21]  1    432622  ultralytics.nn.modules.head.Detect           [10, [64, 128, 256]]          
+Model summary: 249 layers, 2,692,158 parameters, 2,692,142 gradients, 6.9 GFLOPs
+
+Transferred 313/391 items from pretrained weights
+TensorBoard: Start with 'tensorboard --logdir /kaggle/working/runs_budget60/default_s0', view at http://localhost:6006/
+Freezing layer 'model.22.dfl.conv.weight'
+AMP: running Automatic Mixed Precision (AMP) checks with YOLOv8n...
+AMP: checks passed ✅
+train: Scanning /kaggle/working/visdrone/train/labels... 4707 images, 0 backgrounds, 0 corrupt: 100%|██████████| 4707/4707 [00:04<00:00, 1172.29it/s]
+train: WARNING ⚠️ /kaggle/working/visdrone/train/images/0000140_00118_d_0000002.jpg: 1 duplicate labels removed
+train: WARNING ⚠️ /kaggle/working/visdrone/train/images/9999945_00000_d_0000114.jpg: 1 duplicate labels removed
+train: WARNING ⚠️ /kaggle/working/visdrone/train/images/9999987_00000_d_0000049.jpg: 1 duplicate labels removed
+
+train: New cache created: /kaggle/working/visdrone/train/labels.cache
+albumentations: Blur(p=0.01, blur_limit=(3, 7)), MedianBlur(p=0.01, blur_limit=(3, 7)), ToGray(p=0.01, method='weighted_average', num_output_channels=3), CLAHE(p=0.01, clip_limit=(1.0, 4.0), tile_grid_size=(8, 8))
+/usr/local/lib/python3.13/dist-packages/ultralytics/data/augment.py:1850: UserWarning: Argument(s) 'quality_lower' are not valid for transform ImageCompression
+  A.ImageCompression(quality_lower=75, p=0.0),
+val: Scanning /kaggle/working/visdrone/val/labels... 474 images, 0 backgrounds, 0 corrupt: 100%|██████████| 474/474 [00:00<00:00, 1166.02it/s]
+val: New cache created: /kaggle/working/visdrone/val/labels.cache
+
+optimizer: 'optimizer=auto' found, ignoring 'lr0=0.01' and 'momentum=0.937' and determining best 'optimizer', 'lr0' and 'momentum' automatically... 
+optimizer: AdamW(lr=0.000714, momentum=0.9) with parameter groups 63 weight(decay=0.0), 70 weight(decay=0.0005), 69 bias(decay=0.0)
+TensorBoard: model graph visualization added ✅
+Image sizes 960 train, 960 val
+Using 2 dataloader workers
+Logging results to /kaggle/working/runs_budget60/default_s0
+Starting training for 15 epochs...
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       1/15      3.31G      1.763      2.651      1.084        170        960: 100%|██████████| 1177/1177 [02:29<00:00,  7.89it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:14<00:00,  4.01it/s]
+                   all        474      27919      0.267      0.183      0.126     0.0671
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       2/15      2.55G      1.622      1.711      1.059        137        960: 100%|██████████| 1177/1177 [02:09<00:00,  9.07it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:06<00:00,  9.42it/s]
+                   all        474      27919      0.229      0.219      0.167     0.0928
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       3/15      2.44G      1.583      1.566      1.042        248        960: 100%|██████████| 1177/1177 [02:08<00:00,  9.16it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:06<00:00,  9.56it/s]
+                   all        474      27919      0.251      0.254      0.195      0.108
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       4/15      3.91G      1.552      1.482      1.032        201        960: 100%|██████████| 1177/1177 [02:09<00:00,  9.11it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:06<00:00,  9.69it/s]
+                   all        474      27919      0.271      0.264      0.207      0.113
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       5/15      2.97G       1.52      1.404      1.021        321        960: 100%|██████████| 1177/1177 [02:08<00:00,  9.14it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:06<00:00,  9.86it/s]
+                   all        474      27919      0.285      0.271      0.219      0.125
+
+Closing dataloader mosaic
+albumentations: Blur(p=0.01, blur_limit=(3, 7)), MedianBlur(p=0.01, blur_limit=(3, 7)), ToGray(p=0.01, method='weighted_average', num_output_channels=3), CLAHE(p=0.01, clip_limit=(1.0, 4.0), tile_grid_size=(8, 8))
+/usr/local/lib/python3.13/dist-packages/ultralytics/data/augment.py:1850: UserWarning: Argument(s) 'quality_lower' are not valid for transform ImageCompression
+  A.ImageCompression(quality_lower=75, p=0.0),
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       6/15       3.3G      1.505      1.395       1.02        247        960: 100%|██████████| 1177/1177 [01:59<00:00,  9.88it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:05<00:00, 10.09it/s]
+                   all        474      27919      0.281       0.27      0.221      0.123
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       7/15      3.26G      1.492      1.334      1.016        193        960: 100%|██████████| 1177/1177 [01:58<00:00,  9.90it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:05<00:00, 10.19it/s]
+                   all        474      27919      0.337      0.275      0.237      0.134
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       8/15      2.94G      1.474      1.294      1.008        286        960: 100%|██████████| 1177/1177 [01:59<00:00,  9.88it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:05<00:00, 10.36it/s]
+                   all        474      27919      0.342      0.288      0.247      0.139
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       9/15      3.09G      1.456      1.251      1.004         85        960: 100%|██████████| 1177/1177 [01:58<00:00,  9.90it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:05<00:00, 10.62it/s]
+                   all        474      27919      0.346      0.292      0.251      0.143
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      10/15      3.26G      1.442      1.219     0.9993        109        960: 100%|██████████| 1177/1177 [01:59<00:00,  9.89it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:05<00:00, 10.39it/s]
+                   all        474      27919      0.351      0.287      0.253      0.144
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      11/15      3.11G       1.43      1.198      0.997        140        960: 100%|██████████| 1177/1177 [01:58<00:00,  9.90it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:05<00:00, 10.75it/s]
+                   all        474      27919      0.362      0.295      0.262       0.15
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      12/15      3.24G      1.418      1.178     0.9887        125        960: 100%|██████████| 1177/1177 [01:58<00:00,  9.92it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:05<00:00, 10.71it/s]
+                   all        474      27919      0.351      0.306      0.268      0.154
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      13/15      2.86G      1.414      1.163     0.9877        158        960: 100%|██████████| 1177/1177 [01:59<00:00,  9.88it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:05<00:00, 10.60it/s]
+                   all        474      27919      0.368      0.308      0.273      0.156
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      14/15      3.26G      1.399      1.142     0.9832        115        960: 100%|██████████| 1177/1177 [01:58<00:00,  9.91it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:05<00:00, 10.63it/s]
+                   all        474      27919      0.369      0.311      0.276      0.159
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      15/15      3.07G      1.394      1.126     0.9813        107        960: 100%|██████████| 1177/1177 [01:58<00:00,  9.90it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:05<00:00, 10.66it/s]
+                   all        474      27919      0.388      0.304       0.28      0.162
+
+
+15 epochs completed in 0.548 hours.
+Optimizer stripped from /kaggle/working/runs_budget60/default_s0/weights/last.pt, 5.7MB
+Optimizer stripped from /kaggle/working/runs_budget60/default_s0/weights/best.pt, 5.7MB
+
+Validating /kaggle/working/runs_budget60/default_s0/weights/best.pt...
+Ultralytics 8.3.0 🚀 Python-3.13.15 torch-2.11.0+cu128 CUDA:0 (Tesla T4, 14912MiB)
+Model summary (fused): 186 layers, 2,686,318 parameters, 0 gradients, 6.8 GFLOPs
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:04<00:00, 13.35it/s]
+                   all        474      27919      0.387      0.304       0.28      0.162
+Speed: 0.3ms preprocess, 2.7ms inference, 0.0ms loss, 2.4ms postprocess per image
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=0.32s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=117.30s).
+Accumulating evaluation results...
+DONE (t=4.05s).
+default_s0 {'AP': 15.92, 'AP_vtiny(<8)': 0.38, 'AP_tiny(8-16)': 2.57, 'AP_small(16-32)': 8.98, 'AP_rest(>32)': 25.16, 'AP50': 26.9, 'train_min': 33.9}
+New https://pypi.org/project/ultralytics/8.4.177 available 😃 Update with 'pip install -U ultralytics'
+Ultralytics 8.3.0 🚀 Python-3.13.15 torch-2.11.0+cu128 CUDA:0 (Tesla T4, 14912MiB)
+engine/trainer: task=detect, mode=train, model=yolov8n.pt, data=/kaggle/working/visdrone.yaml, epochs=15, time=None, patience=100, batch=4, imgsz=960, save=True, save_period=-1, cache=False, device=0, workers=2, project=/kaggle/working/runs_budget60, name=default_s1, exist_ok=True, pretrained=True, optimizer=auto, verbose=False, seed=1, deterministic=False, single_cls=False, rect=False, cos_lr=False, close_mosaic=10, resume=False, amp=True, fraction=1.0, profile=False, freeze=None, multi_scale=False, overlap_mask=True, mask_ratio=4, dropout=0.0, val=True, split=val, save_json=False, save_hybrid=False, conf=None, iou=0.7, max_det=300, half=False, dnn=False, plots=False, source=None, vid_stride=1, stream_buffer=False, visualize=False, augment=False, agnostic_nms=False, classes=None, retina_masks=False, embed=None, show=False, save_frames=False, save_txt=False, save_conf=False, save_crop=False, show_labels=True, show_conf=True, show_boxes=True, line_width=None, format=torchscript, keras=False, optimize=False, int8=False, dynamic=False, simplify=True, opset=None, workspace=4, nms=False, lr0=0.01, lrf=0.01, momentum=0.937, weight_decay=0.0005, warmup_epochs=3.0, warmup_momentum=0.8, warmup_bias_lr=0.1, box=7.5, cls=0.5, dfl=1.5, pose=12.0, kobj=1.0, label_smoothing=0.0, nbs=64, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, degrees=0.0, translate=0.1, scale=0.5, shear=0.0, perspective=0.0, flipud=0.0, fliplr=0.5, bgr=0.0, mosaic=1.0, mixup=0.0, copy_paste=0.0, copy_paste_mode=flip, auto_augment=randaugment, erasing=0.4, crop_fraction=1.0, cfg=None, tracker=botsort.yaml, save_dir=/kaggle/working/runs_budget60/default_s1
+Overriding model.yaml nc=80 with nc=10
+
+                   from  n    params  module                                       arguments                     
+  0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]                 
+  1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]                
+  2                  -1  1      7360  ultralytics.nn.modules.block.C2f             [32, 32, 1, True]             
+  3                  -1  1     18560  ultralytics.nn.modules.conv.Conv             [32, 64, 3, 2]                
+  4                  -1  2     49664  ultralytics.nn.modules.block.C2f             [64, 64, 2, True]             
+  5                  -1  1     73984  ultralytics.nn.modules.conv.Conv             [64, 128, 3, 2]               
+  6                  -1  2    197632  ultralytics.nn.modules.block.C2f             [128, 128, 2, True]           
+  7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]              
+  8                  -1  1    460288  ultralytics.nn.modules.block.C2f             [256, 256, 1, True]           
+  9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5]                 
+ 10                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 11             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 12                  -1  1    148224  ultralytics.nn.modules.block.C2f             [384, 128, 1]                 
+ 13                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 14             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 15                  -1  1     37248  ultralytics.nn.modules.block.C2f             [192, 64, 1]                  
+ 16                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+ 17            [-1, 12]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 18                  -1  1    123648  ultralytics.nn.modules.block.C2f             [192, 128, 1]                 
+ 19                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+ 20             [-1, 9]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 21                  -1  1    493056  ultralytics.nn.modules.block.C2f             [384, 256, 1]                 
+ 22        [15, 18, 21]  1    432622  ultralytics.nn.modules.head.Detect           [10, [64, 128, 256]]          
+Model summary: 249 layers, 2,692,158 parameters, 2,692,142 gradients, 6.9 GFLOPs
+
+Transferred 313/391 items from pretrained weights
+TensorBoard: Start with 'tensorboard --logdir /kaggle/working/runs_budget60/default_s1', view at http://localhost:6006/
+Freezing layer 'model.22.dfl.conv.weight'
+AMP: running Automatic Mixed Precision (AMP) checks with YOLOv8n...
+AMP: checks passed ✅
+train: Scanning /kaggle/working/visdrone/train/labels.cache... 4707 images, 0 backgrounds, 0 corrupt: 100%|██████████| 4707/4707 [00:00<?, ?it/s]
+train: WARNING ⚠️ /kaggle/working/visdrone/train/images/0000140_00118_d_0000002.jpg: 1 duplicate labels removed
+train: WARNING ⚠️ /kaggle/working/visdrone/train/images/9999945_00000_d_0000114.jpg: 1 duplicate labels removed
+train: WARNING ⚠️ /kaggle/working/visdrone/train/images/9999987_00000_d_0000049.jpg: 1 duplicate labels removed
+albumentations: Blur(p=0.01, blur_limit=(3, 7)), MedianBlur(p=0.01, blur_limit=(3, 7)), ToGray(p=0.01, method='weighted_average', num_output_channels=3), CLAHE(p=0.01, clip_limit=(1.0, 4.0), tile_grid_size=(8, 8))
+
+/usr/local/lib/python3.13/dist-packages/ultralytics/data/augment.py:1850: UserWarning: Argument(s) 'quality_lower' are not valid for transform ImageCompression
+  A.ImageCompression(quality_lower=75, p=0.0),
+val: Scanning /kaggle/working/visdrone/val/labels.cache... 474 images, 0 backgrounds, 0 corrupt: 100%|██████████| 474/474 [00:00<?, ?it/s]
+optimizer: 'optimizer=auto' found, ignoring 'lr0=0.01' and 'momentum=0.937' and determining best 'optimizer', 'lr0' and 'momentum' automatically... 
+optimizer: AdamW(lr=0.000714, momentum=0.9) with parameter groups 63 weight(decay=0.0), 70 weight(decay=0.0005), 69 bias(decay=0.0)
+TensorBoard: model graph visualization added ✅
+Image sizes 960 train, 960 val
+Using 2 dataloader workers
+Logging results to /kaggle/working/runs_budget60/default_s1
+Starting training for 15 epochs...
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       1/15      3.28G      1.762       2.57      1.118        170        960: 100%|██████████| 1177/1177 [02:16<00:00,  8.64it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:07<00:00,  8.09it/s]
+                   all        474      27919      0.263      0.173      0.129     0.0714
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       2/15      2.55G      1.622      1.702      1.059        137        960: 100%|██████████| 1177/1177 [02:10<00:00,  9.01it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:06<00:00,  9.86it/s]
+                   all        474      27919      0.235       0.24      0.172      0.096
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       3/15      2.44G      1.579      1.551       1.04        248        960: 100%|██████████| 1177/1177 [02:09<00:00,  9.09it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:06<00:00,  9.99it/s]
+                   all        474      27919      0.252      0.256      0.196      0.109
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       4/15      3.91G      1.553      1.466      1.032        201        960: 100%|██████████| 1177/1177 [02:09<00:00,  9.08it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:06<00:00, 10.00it/s]
+                   all        474      27919      0.256      0.262      0.199       0.11
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       5/15      2.97G      1.516      1.388      1.021        321        960: 100%|██████████| 1177/1177 [02:09<00:00,  9.11it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:05<00:00, 10.27it/s]
+                   all        474      27919      0.292      0.278      0.222      0.125
+Closing dataloader mosaic
+albumentations: Blur(p=0.01, blur_limit=(3, 7)), MedianBlur(p=0.01, blur_limit=(3, 7)), ToGray(p=0.01, method='weighted_average', num_output_channels=3), CLAHE(p=0.01, clip_limit=(1.0, 4.0), tile_grid_size=(8, 8))
+/usr/local/lib/python3.13/dist-packages/ultralytics/data/augment.py:1850: UserWarning: Argument(s) 'quality_lower' are not valid for transform ImageCompression
+  A.ImageCompression(quality_lower=75, p=0.0),
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       6/15       3.3G      1.501      1.378       1.02        247        960: 100%|██████████| 1177/1177 [01:59<00:00,  9.86it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:05<00:00, 10.25it/s]
+                   all        474      27919      0.278      0.269      0.211      0.118
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       7/15      3.26G      1.492      1.322      1.017        193        960: 100%|██████████| 1177/1177 [01:59<00:00,  9.87it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:05<00:00, 10.56it/s]
+                   all        474      27919      0.312      0.279      0.232       0.13
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       8/15      2.94G      1.473      1.283      1.009        286        960: 100%|██████████| 1177/1177 [01:59<00:00,  9.89it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:05<00:00, 10.52it/s]
+                   all        474      27919       0.33      0.282       0.24      0.136
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       9/15      3.09G      1.452      1.239      1.004         85        960: 100%|██████████| 1177/1177 [01:58<00:00,  9.92it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:05<00:00, 10.54it/s]
+                   all        474      27919      0.329      0.293      0.244      0.139
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      10/15      3.26G      1.441      1.209     0.9993        109        960: 100%|██████████| 1177/1177 [01:59<00:00,  9.88it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:05<00:00, 10.46it/s]
+                   all        474      27919      0.349       0.29      0.253      0.145
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      11/15      3.11G      1.428      1.192     0.9969        140        960: 100%|██████████| 1177/1177 [01:59<00:00,  9.88it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:05<00:00, 10.66it/s]
+                   all        474      27919      0.364      0.291      0.261      0.151
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      12/15      3.24G      1.416      1.168     0.9883        125        960: 100%|██████████| 1177/1177 [01:58<00:00,  9.90it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:05<00:00, 10.72it/s]
+                   all        474      27919      0.358      0.296      0.263      0.152
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      13/15      2.86G      1.414      1.153     0.9881        158        960: 100%|██████████| 1177/1177 [01:58<00:00,  9.91it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:05<00:00, 10.53it/s]
+                   all        474      27919       0.35      0.312      0.268      0.155
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      14/15      3.26G      1.399      1.137      0.984        115        960: 100%|██████████| 1177/1177 [01:58<00:00,  9.92it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:05<00:00, 10.75it/s]
+                   all        474      27919      0.383      0.311      0.276       0.16
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      15/15      3.07G      1.391      1.118     0.9808        107        960: 100%|██████████| 1177/1177 [01:58<00:00,  9.97it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:05<00:00, 10.65it/s]
+                   all        474      27919      0.396      0.306      0.278      0.162
+
+15 epochs completed in 0.542 hours.
+Optimizer stripped from /kaggle/working/runs_budget60/default_s1/weights/last.pt, 5.7MB
+Optimizer stripped from /kaggle/working/runs_budget60/default_s1/weights/best.pt, 5.7MB
+
+Validating /kaggle/working/runs_budget60/default_s1/weights/best.pt...
+Ultralytics 8.3.0 🚀 Python-3.13.15 torch-2.11.0+cu128 CUDA:0 (Tesla T4, 14912MiB)
+Model summary (fused): 186 layers, 2,686,318 parameters, 0 gradients, 6.8 GFLOPs
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:04<00:00, 14.12it/s]
+                   all        474      27919      0.395      0.306      0.278      0.162
+Speed: 0.3ms preprocess, 2.7ms inference, 0.0ms loss, 2.3ms postprocess per image
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=1.01s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=116.26s).
+Accumulating evaluation results...
+DONE (t=4.01s).
+default_s1 {'AP': 16.18, 'AP_vtiny(<8)': 0.56, 'AP_tiny(8-16)': 2.6, 'AP_small(16-32)': 8.94, 'AP_rest(>32)': 25.67, 'AP50': 27.33, 'train_min': 33.0}
+New https://pypi.org/project/ultralytics/8.4.177 available 😃 Update with 'pip install -U ultralytics'
+Ultralytics 8.3.0 🚀 Python-3.13.15 torch-2.11.0+cu128 CUDA:0 (Tesla T4, 14912MiB)
+engine/trainer: task=detect, mode=train, model=yolov8n.pt, data=/kaggle/working/visdrone.yaml, epochs=15, time=None, patience=100, batch=4, imgsz=960, save=True, save_period=-1, cache=False, device=0, workers=2, project=/kaggle/working/runs_budget60, name=ot_nwd_s0, exist_ok=True, pretrained=True, optimizer=auto, verbose=False, seed=0, deterministic=False, single_cls=False, rect=False, cos_lr=False, close_mosaic=10, resume=False, amp=True, fraction=1.0, profile=False, freeze=None, multi_scale=False, overlap_mask=True, mask_ratio=4, dropout=0.0, val=True, split=val, save_json=False, save_hybrid=False, conf=None, iou=0.7, max_det=300, half=False, dnn=False, plots=False, source=None, vid_stride=1, stream_buffer=False, visualize=False, augment=False, agnostic_nms=False, classes=None, retina_masks=False, embed=None, show=False, save_frames=False, save_txt=False, save_conf=False, save_crop=False, show_labels=True, show_conf=True, show_boxes=True, line_width=None, format=torchscript, keras=False, optimize=False, int8=False, dynamic=False, simplify=True, opset=None, workspace=4, nms=False, lr0=0.01, lrf=0.01, momentum=0.937, weight_decay=0.0005, warmup_epochs=3.0, warmup_momentum=0.8, warmup_bias_lr=0.1, box=7.5, cls=0.5, dfl=1.5, pose=12.0, kobj=1.0, label_smoothing=0.0, nbs=64, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, degrees=0.0, translate=0.1, scale=0.5, shear=0.0, perspective=0.0, flipud=0.0, fliplr=0.5, bgr=0.0, mosaic=1.0, mixup=0.0, copy_paste=0.0, copy_paste_mode=flip, auto_augment=randaugment, erasing=0.4, crop_fraction=1.0, cfg=None, tracker=botsort.yaml, save_dir=/kaggle/working/runs_budget60/ot_nwd_s0
+Overriding model.yaml nc=80 with nc=10
+
+                   from  n    params  module                                       arguments                     
+  0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]                 
+  1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]                
+  2                  -1  1      7360  ultralytics.nn.modules.block.C2f             [32, 32, 1, True]             
+  3                  -1  1     18560  ultralytics.nn.modules.conv.Conv             [32, 64, 3, 2]                
+  4                  -1  2     49664  ultralytics.nn.modules.block.C2f             [64, 64, 2, True]             
+  5                  -1  1     73984  ultralytics.nn.modules.conv.Conv             [64, 128, 3, 2]               
+  6                  -1  2    197632  ultralytics.nn.modules.block.C2f             [128, 128, 2, True]           
+  7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]              
+  8                  -1  1    460288  ultralytics.nn.modules.block.C2f             [256, 256, 1, True]           
+  9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5]                 
+ 10                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 11             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 12                  -1  1    148224  ultralytics.nn.modules.block.C2f             [384, 128, 1]                 
+ 13                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 14             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 15                  -1  1     37248  ultralytics.nn.modules.block.C2f             [192, 64, 1]                  
+ 16                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+ 17            [-1, 12]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 18                  -1  1    123648  ultralytics.nn.modules.block.C2f             [192, 128, 1]                 
+ 19                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+ 20             [-1, 9]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 21                  -1  1    493056  ultralytics.nn.modules.block.C2f             [384, 256, 1]                 
+ 22        [15, 18, 21]  1    432622  ultralytics.nn.modules.head.Detect           [10, [64, 128, 256]]          
+Model summary: 249 layers, 2,692,158 parameters, 2,692,142 gradients, 6.9 GFLOPs
+
+Transferred 313/391 items from pretrained weights
+TensorBoard: Start with 'tensorboard --logdir /kaggle/working/runs_budget60/ot_nwd_s0', view at http://localhost:6006/
+Freezing layer 'model.22.dfl.conv.weight'
+AMP: running Automatic Mixed Precision (AMP) checks with YOLOv8n...
+AMP: checks passed ✅
+train: Scanning /kaggle/working/visdrone/train/labels.cache... 4707 images, 0 backgrounds, 0 corrupt: 100%|██████████| 4707/4707 [00:00<?, ?it/s]
+train: WARNING ⚠️ /kaggle/working/visdrone/train/images/0000140_00118_d_0000002.jpg: 1 duplicate labels removed
+train: WARNING ⚠️ /kaggle/working/visdrone/train/images/9999945_00000_d_0000114.jpg: 1 duplicate labels removed
+train: WARNING ⚠️ /kaggle/working/visdrone/train/images/9999987_00000_d_0000049.jpg: 1 duplicate labels removed
+albumentations: Blur(p=0.01, blur_limit=(3, 7)), MedianBlur(p=0.01, blur_limit=(3, 7)), ToGray(p=0.01, method='weighted_average', num_output_channels=3), CLAHE(p=0.01, clip_limit=(1.0, 4.0), tile_grid_size=(8, 8))
+
+/usr/local/lib/python3.13/dist-packages/ultralytics/data/augment.py:1850: UserWarning: Argument(s) 'quality_lower' are not valid for transform ImageCompression
+  A.ImageCompression(quality_lower=75, p=0.0),
+val: Scanning /kaggle/working/visdrone/val/labels.cache... 474 images, 0 backgrounds, 0 corrupt: 100%|██████████| 474/474 [00:00<?, ?it/s]
+optimizer: 'optimizer=auto' found, ignoring 'lr0=0.01' and 'momentum=0.937' and determining best 'optimizer', 'lr0' and 'momentum' automatically... 
+optimizer: AdamW(lr=0.000714, momentum=0.9) with parameter groups 63 weight(decay=0.0), 70 weight(decay=0.0005), 69 bias(decay=0.0)
+TensorBoard: model graph visualization added ✅
+Image sizes 960 train, 960 val
+Using 2 dataloader workers
+Logging results to /kaggle/working/runs_budget60/ot_nwd_s0
+Starting training for 15 epochs...
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       1/15      2.55G      2.625      2.579      1.003        170        960: 100%|██████████| 1177/1177 [03:00<00:00,  6.51it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:13<00:00,  4.36it/s]
+                   all        474      27919      0.141       0.18      0.109     0.0552
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       2/15      2.16G      2.481      1.739      1.005        137        960: 100%|██████████| 1177/1177 [02:55<00:00,  6.72it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:12<00:00,  4.86it/s]
+                   all        474      27919      0.323      0.191      0.157     0.0799
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       3/15      1.97G      2.442      1.599     0.9923        248        960: 100%|██████████| 1177/1177 [02:54<00:00,  6.74it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:12<00:00,  4.90it/s]
+                   all        474      27919      0.239      0.231      0.173     0.0905
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       4/15      3.02G      2.385      1.516     0.9855        201        960: 100%|██████████| 1177/1177 [02:54<00:00,  6.74it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:11<00:00,  5.23it/s]
+                   all        474      27919      0.229      0.243      0.174      0.089
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       5/15       2.3G      2.339      1.439      0.976        321        960: 100%|██████████| 1177/1177 [02:54<00:00,  6.74it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:11<00:00,  5.32it/s]
+                   all        474      27919      0.279      0.263      0.202      0.104
+
+Closing dataloader mosaic
+albumentations: Blur(p=0.01, blur_limit=(3, 7)), MedianBlur(p=0.01, blur_limit=(3, 7)), ToGray(p=0.01, method='weighted_average', num_output_channels=3), CLAHE(p=0.01, clip_limit=(1.0, 4.0), tile_grid_size=(8, 8))
+/usr/local/lib/python3.13/dist-packages/ultralytics/data/augment.py:1850: UserWarning: Argument(s) 'quality_lower' are not valid for transform ImageCompression
+  A.ImageCompression(quality_lower=75, p=0.0),
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       6/15      2.51G       2.24      1.432     0.9784        247        960: 100%|██████████| 1177/1177 [02:47<00:00,  7.01it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:11<00:00,  5.22it/s]
+                   all        474      27919      0.273      0.275      0.206      0.109
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       7/15      2.47G      2.215      1.369     0.9732        193        960: 100%|██████████| 1177/1177 [02:46<00:00,  7.05it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:11<00:00,  5.26it/s]
+                   all        474      27919      0.294       0.28       0.22      0.118
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       8/15      2.39G      2.187      1.328      0.967        286        960: 100%|██████████| 1177/1177 [02:47<00:00,  7.03it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:11<00:00,  5.33it/s]
+                   all        474      27919      0.294      0.293      0.226      0.122
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       9/15      2.47G      2.154      1.289     0.9622         85        960: 100%|██████████| 1177/1177 [02:47<00:00,  7.01it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:11<00:00,  5.36it/s]
+                   all        474      27919      0.321      0.296      0.233      0.124
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      10/15      2.56G      2.139      1.259      0.959        109        960: 100%|██████████| 1177/1177 [02:47<00:00,  7.03it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:11<00:00,  5.40it/s]
+                   all        474      27919      0.296      0.301      0.236      0.126
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      11/15      2.49G      2.104      1.233     0.9555        140        960: 100%|██████████| 1177/1177 [02:46<00:00,  7.06it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:10<00:00,  5.47it/s]
+                   all        474      27919       0.32      0.313      0.247      0.132
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      12/15      2.47G      2.095      1.215     0.9492        125        960: 100%|██████████| 1177/1177 [02:46<00:00,  7.08it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:10<00:00,  5.48it/s]
+                   all        474      27919      0.334      0.301       0.25      0.135
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      13/15      2.24G      2.092        1.2     0.9476        158        960: 100%|██████████| 1177/1177 [02:46<00:00,  7.07it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:10<00:00,  5.46it/s]
+                   all        474      27919      0.363      0.285      0.253      0.136
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      14/15      2.56G      2.076      1.184     0.9436        115        960: 100%|██████████| 1177/1177 [02:45<00:00,  7.09it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:11<00:00,  5.43it/s]
+                   all        474      27919      0.341      0.307       0.26       0.14
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      15/15      2.47G      2.047      1.163     0.9414        107        960: 100%|██████████| 1177/1177 [02:46<00:00,  7.09it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:10<00:00,  5.48it/s]
+                   all        474      27919      0.353      0.311      0.265      0.143
+
+
+15 epochs completed in 0.761 hours.
+Optimizer stripped from /kaggle/working/runs_budget60/ot_nwd_s0/weights/last.pt, 5.7MB
+Optimizer stripped from /kaggle/working/runs_budget60/ot_nwd_s0/weights/best.pt, 5.7MB
+
+Validating /kaggle/working/runs_budget60/ot_nwd_s0/weights/best.pt...
+Ultralytics 8.3.0 🚀 Python-3.13.15 torch-2.11.0+cu128 CUDA:0 (Tesla T4, 14912MiB)
+Model summary (fused): 186 layers, 2,686,318 parameters, 0 gradients, 6.8 GFLOPs
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:04<00:00, 13.47it/s]
+                   all        474      27919      0.356      0.311      0.265      0.143
+Speed: 0.3ms preprocess, 2.6ms inference, 0.0ms loss, 3.1ms postprocess per image
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=1.05s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=115.55s).
+Accumulating evaluation results...
+DONE (t=4.17s).
+ot_nwd_s0 {'AP': 14.81, 'AP_vtiny(<8)': 0.36, 'AP_tiny(8-16)': 2.92, 'AP_small(16-32)': 9.51, 'AP_rest(>32)': 23.87, 'AP50': 26.68, 'train_min': 46.2}
+New https://pypi.org/project/ultralytics/8.4.177 available 😃 Update with 'pip install -U ultralytics'
+Ultralytics 8.3.0 🚀 Python-3.13.15 torch-2.11.0+cu128 CUDA:0 (Tesla T4, 14912MiB)
+engine/trainer: task=detect, mode=train, model=yolov8n.pt, data=/kaggle/working/visdrone.yaml, epochs=15, time=None, patience=100, batch=4, imgsz=960, save=True, save_period=-1, cache=False, device=0, workers=2, project=/kaggle/working/runs_budget60, name=ot_nwd_s1, exist_ok=True, pretrained=True, optimizer=auto, verbose=False, seed=1, deterministic=False, single_cls=False, rect=False, cos_lr=False, close_mosaic=10, resume=False, amp=True, fraction=1.0, profile=False, freeze=None, multi_scale=False, overlap_mask=True, mask_ratio=4, dropout=0.0, val=True, split=val, save_json=False, save_hybrid=False, conf=None, iou=0.7, max_det=300, half=False, dnn=False, plots=False, source=None, vid_stride=1, stream_buffer=False, visualize=False, augment=False, agnostic_nms=False, classes=None, retina_masks=False, embed=None, show=False, save_frames=False, save_txt=False, save_conf=False, save_crop=False, show_labels=True, show_conf=True, show_boxes=True, line_width=None, format=torchscript, keras=False, optimize=False, int8=False, dynamic=False, simplify=True, opset=None, workspace=4, nms=False, lr0=0.01, lrf=0.01, momentum=0.937, weight_decay=0.0005, warmup_epochs=3.0, warmup_momentum=0.8, warmup_bias_lr=0.1, box=7.5, cls=0.5, dfl=1.5, pose=12.0, kobj=1.0, label_smoothing=0.0, nbs=64, hsv_h=0.015, hsv_s=0.7, hsv_v=0.4, degrees=0.0, translate=0.1, scale=0.5, shear=0.0, perspective=0.0, flipud=0.0, fliplr=0.5, bgr=0.0, mosaic=1.0, mixup=0.0, copy_paste=0.0, copy_paste_mode=flip, auto_augment=randaugment, erasing=0.4, crop_fraction=1.0, cfg=None, tracker=botsort.yaml, save_dir=/kaggle/working/runs_budget60/ot_nwd_s1
+Overriding model.yaml nc=80 with nc=10
+
+                   from  n    params  module                                       arguments                     
+  0                  -1  1       464  ultralytics.nn.modules.conv.Conv             [3, 16, 3, 2]                 
+  1                  -1  1      4672  ultralytics.nn.modules.conv.Conv             [16, 32, 3, 2]                
+  2                  -1  1      7360  ultralytics.nn.modules.block.C2f             [32, 32, 1, True]             
+  3                  -1  1     18560  ultralytics.nn.modules.conv.Conv             [32, 64, 3, 2]                
+  4                  -1  2     49664  ultralytics.nn.modules.block.C2f             [64, 64, 2, True]             
+  5                  -1  1     73984  ultralytics.nn.modules.conv.Conv             [64, 128, 3, 2]               
+  6                  -1  2    197632  ultralytics.nn.modules.block.C2f             [128, 128, 2, True]           
+  7                  -1  1    295424  ultralytics.nn.modules.conv.Conv             [128, 256, 3, 2]              
+  8                  -1  1    460288  ultralytics.nn.modules.block.C2f             [256, 256, 1, True]           
+  9                  -1  1    164608  ultralytics.nn.modules.block.SPPF            [256, 256, 5]                 
+ 10                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 11             [-1, 6]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 12                  -1  1    148224  ultralytics.nn.modules.block.C2f             [384, 128, 1]                 
+ 13                  -1  1         0  torch.nn.modules.upsampling.Upsample         [None, 2, 'nearest']          
+ 14             [-1, 4]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 15                  -1  1     37248  ultralytics.nn.modules.block.C2f             [192, 64, 1]                  
+ 16                  -1  1     36992  ultralytics.nn.modules.conv.Conv             [64, 64, 3, 2]                
+ 17            [-1, 12]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 18                  -1  1    123648  ultralytics.nn.modules.block.C2f             [192, 128, 1]                 
+ 19                  -1  1    147712  ultralytics.nn.modules.conv.Conv             [128, 128, 3, 2]              
+ 20             [-1, 9]  1         0  ultralytics.nn.modules.conv.Concat           [1]                           
+ 21                  -1  1    493056  ultralytics.nn.modules.block.C2f             [384, 256, 1]                 
+ 22        [15, 18, 21]  1    432622  ultralytics.nn.modules.head.Detect           [10, [64, 128, 256]]          
+Model summary: 249 layers, 2,692,158 parameters, 2,692,142 gradients, 6.9 GFLOPs
+
+Transferred 313/391 items from pretrained weights
+TensorBoard: Start with 'tensorboard --logdir /kaggle/working/runs_budget60/ot_nwd_s1', view at http://localhost:6006/
+Freezing layer 'model.22.dfl.conv.weight'
+AMP: running Automatic Mixed Precision (AMP) checks with YOLOv8n...
+AMP: checks passed ✅
+train: Scanning /kaggle/working/visdrone/train/labels.cache... 4707 images, 0 backgrounds, 0 corrupt: 100%|██████████| 4707/4707 [00:00<?, ?it/s]
+train: WARNING ⚠️ /kaggle/working/visdrone/train/images/0000140_00118_d_0000002.jpg: 1 duplicate labels removed
+train: WARNING ⚠️ /kaggle/working/visdrone/train/images/9999945_00000_d_0000114.jpg: 1 duplicate labels removed
+train: WARNING ⚠️ /kaggle/working/visdrone/train/images/9999987_00000_d_0000049.jpg: 1 duplicate labels removed
+albumentations: Blur(p=0.01, blur_limit=(3, 7)), MedianBlur(p=0.01, blur_limit=(3, 7)), ToGray(p=0.01, method='weighted_average', num_output_channels=3), CLAHE(p=0.01, clip_limit=(1.0, 4.0), tile_grid_size=(8, 8))
+
+/usr/local/lib/python3.13/dist-packages/ultralytics/data/augment.py:1850: UserWarning: Argument(s) 'quality_lower' are not valid for transform ImageCompression
+  A.ImageCompression(quality_lower=75, p=0.0),
+val: Scanning /kaggle/working/visdrone/val/labels.cache... 474 images, 0 backgrounds, 0 corrupt: 100%|██████████| 474/474 [00:00<?, ?it/s]
+optimizer: 'optimizer=auto' found, ignoring 'lr0=0.01' and 'momentum=0.937' and determining best 'optimizer', 'lr0' and 'momentum' automatically... 
+optimizer: AdamW(lr=0.000714, momentum=0.9) with parameter groups 63 weight(decay=0.0), 70 weight(decay=0.0005), 69 bias(decay=0.0)
+TensorBoard: model graph visualization added ✅
+Image sizes 960 train, 960 val
+Using 2 dataloader workers
+Logging results to /kaggle/working/runs_budget60/ot_nwd_s1
+Starting training for 15 epochs...
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       1/15      2.56G      2.618      2.477       1.04        170        960: 100%|██████████| 1177/1177 [02:59<00:00,  6.55it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:13<00:00,  4.56it/s]
+                   all        474      27919      0.162      0.208       0.12     0.0618
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       2/15      2.16G      2.506      1.698      1.024        137        960: 100%|██████████| 1177/1177 [02:54<00:00,  6.75it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:11<00:00,  5.18it/s]
+                   all        474      27919      0.204      0.253      0.167     0.0868
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       3/15      1.97G      2.473      1.582      1.009        248        960: 100%|██████████| 1177/1177 [02:52<00:00,  6.82it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:11<00:00,  5.04it/s]
+                   all        474      27919      0.256       0.26      0.193     0.0992
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       4/15      3.02G      2.411      1.505          1        201        960: 100%|██████████| 1177/1177 [02:52<00:00,  6.81it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:11<00:00,  5.16it/s]
+                   all        474      27919      0.257      0.255      0.193        0.1
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       5/15       2.3G      2.365      1.444     0.9894        321        960: 100%|██████████| 1177/1177 [02:52<00:00,  6.82it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:10<00:00,  5.47it/s]
+                   all        474      27919      0.273      0.277      0.214      0.112
+
+Closing dataloader mosaic
+albumentations: Blur(p=0.01, blur_limit=(3, 7)), MedianBlur(p=0.01, blur_limit=(3, 7)), ToGray(p=0.01, method='weighted_average', num_output_channels=3), CLAHE(p=0.01, clip_limit=(1.0, 4.0), tile_grid_size=(8, 8))
+/usr/local/lib/python3.13/dist-packages/ultralytics/data/augment.py:1850: UserWarning: Argument(s) 'quality_lower' are not valid for transform ImageCompression
+  A.ImageCompression(quality_lower=75, p=0.0),
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       6/15      2.51G      2.266      1.434     0.9948        247        960: 100%|██████████| 1177/1177 [02:47<00:00,  7.05it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:11<00:00,  5.39it/s]
+                   all        474      27919      0.264      0.272      0.205      0.107
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       7/15      2.47G       2.24      1.373     0.9878        193        960: 100%|██████████| 1177/1177 [02:46<00:00,  7.06it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:11<00:00,  5.28it/s]
+                   all        474      27919      0.312      0.272      0.224      0.118
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       8/15      2.39G      2.207      1.335     0.9812        286        960: 100%|██████████| 1177/1177 [02:45<00:00,  7.09it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:11<00:00,  5.40it/s]
+                   all        474      27919      0.295      0.282      0.225       0.12
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+       9/15      2.47G      2.177      1.296      0.977         85        960: 100%|██████████| 1177/1177 [02:46<00:00,  7.08it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:10<00:00,  5.46it/s]
+                   all        474      27919      0.312      0.288      0.237      0.128
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      10/15      2.56G      2.162      1.272     0.9726        109        960: 100%|██████████| 1177/1177 [02:46<00:00,  7.08it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:11<00:00,  5.42it/s]
+                   all        474      27919      0.318      0.295      0.245       0.13
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      11/15      2.49G      2.124      1.246     0.9683        140        960: 100%|██████████| 1177/1177 [02:46<00:00,  7.07it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:10<00:00,  5.51it/s]
+                   all        474      27919      0.338      0.299       0.25      0.136
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      12/15      2.47G      2.111      1.225     0.9628        125        960: 100%|██████████| 1177/1177 [02:45<00:00,  7.10it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:10<00:00,  5.55it/s]
+                   all        474      27919      0.331      0.301      0.254      0.138
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      13/15      2.24G      2.111      1.211     0.9609        158        960: 100%|██████████| 1177/1177 [02:46<00:00,  7.07it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:11<00:00,  5.43it/s]
+                   all        474      27919      0.356      0.294      0.258      0.139
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      14/15      2.56G      2.091      1.193     0.9555        115        960: 100%|██████████| 1177/1177 [02:46<00:00,  7.06it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:10<00:00,  5.52it/s]
+                   all        474      27919      0.346      0.309      0.265      0.144
+
+
+      Epoch    GPU_mem   box_loss   cls_loss   dfl_loss  Instances       Size
+      15/15      2.47G      2.066      1.173     0.9537        107        960: 100%|██████████| 1177/1177 [02:46<00:00,  7.08it/s]
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:10<00:00,  5.52it/s]
+                   all        474      27919      0.356      0.311       0.27      0.147
+
+
+15 epochs completed in 0.757 hours.
+Optimizer stripped from /kaggle/working/runs_budget60/ot_nwd_s1/weights/last.pt, 5.7MB
+Optimizer stripped from /kaggle/working/runs_budget60/ot_nwd_s1/weights/best.pt, 5.7MB
+
+Validating /kaggle/working/runs_budget60/ot_nwd_s1/weights/best.pt...
+Ultralytics 8.3.0 🚀 Python-3.13.15 torch-2.11.0+cu128 CUDA:0 (Tesla T4, 14912MiB)
+Model summary (fused): 186 layers, 2,686,318 parameters, 0 gradients, 6.8 GFLOPs
+                 Class     Images  Instances      Box(P          R      mAP50  mAP50-95): 100%|██████████| 60/60 [00:04<00:00, 13.62it/s]
+                   all        474      27919      0.357      0.311       0.27      0.147
+Speed: 0.3ms preprocess, 2.7ms inference, 0.0ms loss, 2.9ms postprocess per image
+creating index...
+index created!
+Loading and preparing results...
+DONE (t=1.05s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=114.38s).
+Accumulating evaluation results...
+DONE (t=4.15s).
+ot_nwd_s1 {'AP': 15.42, 'AP_vtiny(<8)': 0.4, 'AP_tiny(8-16)': 3.07, 'AP_small(16-32)': 9.49, 'AP_rest(>32)': 24.73, 'AP50': 27.58, 'train_min': 45.9}

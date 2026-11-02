@@ -1,0 +1,244 @@
+{
+ "dataset_train": {
+  "images": 4707,
+  "objects": 249856,
+  "objects_per_image": 53.08179307414489,
+  "size_bucket_fraction": {
+   "<8": 0.051301549692622954,
+   "8\u201316": 0.19231077100409835,
+   "16\u201332": 0.340912365522541,
+   "\u226532": 0.4154753137807377
+  },
+  "median_side_px": 27.16615541441225,
+  "per_class": {
+   "pedestrian": 55000,
+   "people": 20533,
+   "bicycle": 8423,
+   "car": 109820,
+   "van": 16196,
+   "truck": 8264,
+   "tricycle": 3938,
+   "awning-tricycle": 2431,
+   "bus": 2718,
+   "motor": 22533
+  }
+ },
+ "dataset_val": {
+  "images": 474,
+  "objects": 27919,
+  "objects_per_image": 58.90084388185654,
+  "size_bucket_fraction": {
+   "<8": 0.06801819549410795,
+   "8\u201316": 0.2975034922454243,
+   "16\u201332": 0.3646262401948494,
+   "\u226532": 0.2698520720656184
+  },
+  "median_side_px": 20.199009876724155,
+  "per_class": {
+   "pedestrian": 6103,
+   "people": 2830,
+   "bicycle": 821,
+   "car": 11106,
+   "van": 1502,
+   "truck": 1935,
+   "tricycle": 364,
+   "awning-tricycle": 235,
+   "bus": 384,
+   "motor": 2639
+  }
+ },
+ "dataset_test": {
+  "images": 1290,
+  "objects": 65429,
+  "objects_per_image": 50.72015503875969,
+  "size_bucket_fraction": {
+   "<8": 0.05463938009139678,
+   "8\u201316": 0.22253129346314326,
+   "16\u201332": 0.35086888077152334,
+   "\u226532": 0.37196044567393666
+  },
+  "median_side_px": 24.73863375370596,
+  "per_class": {
+   "pedestrian": 18234,
+   "people": 3696,
+   "bicycle": 1236,
+   "car": 23940,
+   "van": 7258,
+   "truck": 2676,
+   "tricycle": 510,
+   "awning-tricycle": 580,
+   "bus": 2824,
+   "motor": 4475
+  }
+ },
+ "dataset_samples": [
+  "9999950_00000_d_0000071.jpg",
+  "0000264_03801_d_0000213.jpg",
+  "9999940_00000_d_0000024.jpg",
+  "0000225_00939_d_0000003.jpg",
+  "0000040_03752_d_0000070.jpg",
+  "0000247_00002_d_0000001.jpg"
+ ],
+ "assign": {
+  "images": 300,
+  "objects": 15227,
+  "bin_edges_px": [
+   2,
+   4,
+   6,
+   8,
+   11,
+   16,
+   23,
+   32,
+   45,
+   64,
+   128,
+   512
+  ],
+  "objects_per_bin": [
+   30.0,
+   214.0,
+   454.0,
+   934.0,
+   1869.0,
+   2553.0,
+   2737.0,
+   2236.0,
+   1763.0,
+   2036.0,
+   401.0
+  ],
+  "tal": {
+   "no_positive_fraction": [
+    0.9,
+    0.8691588785046729,
+    0.7136563876651982,
+    0.5802997858672377,
+    0.28731942215088285,
+    0.0881316098707403,
+    0.021556448666423093,
+    0.0031305903398926656,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "positives_per_object": [
+    0.1,
+    0.1308411214953271,
+    0.2973568281938326,
+    0.493576017130621,
+    1.1562332798287855,
+    2.6870348609479042,
+    5.248447204968944,
+    8.021466905187836,
+    9.584798638684061,
+    9.929764243614931,
+    10.0
+   ],
+   "by_size": {
+    "<8": {
+     "objects": 698,
+     "no_positive": 537,
+     "no_positive_fraction": 0.7693409742120344,
+     "positives_per_object": 0.23782234957020057
+    },
+    "8\u201316": {
+     "objects": 2803,
+     "no_positive": 1079,
+     "no_positive_fraction": 0.3849447021048876,
+     "positives_per_object": 0.9354263289332858
+    },
+    "16\u201332": {
+     "objects": 5290,
+     "no_positive": 284,
+     "no_positive_fraction": 0.053686200378071834,
+     "positives_per_object": 4.012287334593573
+    },
+    "\u226532": {
+     "objects": 6439,
+     "no_positive": 7,
+     "no_positive_fraction": 0.0010871253300201895,
+     "positives_per_object": 9.177046125174716
+    }
+   }
+  },
+  "ot": {
+   "no_positive_fraction": [
+    0.26666666666666666,
+    0.16355140186915887,
+    0.14096916299559473,
+    0.07387580299785867,
+    0.0444087747458534,
+    0.0199764982373678,
+    0.0113262696382901,
+    0.010286225402504472,
+    0.0017016449234259785,
+    0.0014734774066797642,
+    0.007481296758104738
+   ],
+   "positives_per_object": [
+    1.3666666666666667,
+    1.766355140186916,
+    2.1651982378854626,
+    2.6798715203426124,
+    3.355805243445693,
+    4.259302781041911,
+    5.28425283156741,
+    6.043828264758497,
+    6.691435053885423,
+    6.989194499017682,
+    6.553615960099751
+   ],
+   "by_size": {
+    "<8": {
+     "objects": 698,
+     "no_positive": 107,
+     "no_positive_fraction": 0.15329512893982808,
+     "positives_per_object": 2.008595988538682
+    },
+    "8\u201316": {
+     "objects": 2803,
+     "no_positive": 152,
+     "no_positive_fraction": 0.05422761327149483,
+     "positives_per_object": 3.1305743845879417
+    },
+    "16\u201332": {
+     "objects": 5290,
+     "no_positive": 82,
+     "no_positive_fraction": 0.01550094517958412,
+     "positives_per_object": 4.789603024574669
+    },
+    "\u226532": {
+     "objects": 6439,
+     "no_positive": 32,
+     "no_positive_fraction": 0.004969715794378009,
+     "positives_per_object": 6.551017238701662
+    }
+   }
+  }
+ },
+ "assign_examples": {
+  "9999945_00000_d_0000133.jpg": {
+   "tal": {
+    "objects": 52,
+    "without_positive": 29
+   },
+   "ot": {
+    "objects": 52,
+    "without_positive": 11
+   }
+  },
+  "0000197_03351_d_0000154.jpg": {
+   "tal": {
+    "objects": 109,
+    "without_positive": 64
+   },
+   "ot": {
+    "objects": 109,
+    "without_positive": 0
+   }
+  }
+ },
+ "assign_rule": "300 random training-split images (seed 3); model initialised as at the start of training; examples: the two analysed images with the most objects under 16 px (different clips), 192x192 crop of the 960x960 input with the most such objects"
+}

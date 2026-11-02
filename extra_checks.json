@@ -1,0 +1,29 @@
+{
+ "row_error_bound": {
+  "checks": 28398,
+  "violations": 0,
+  "max_ratio": 0.4089134475135192
+ },
+ "overlaps": {
+  "4": {
+   "mean_overlapping": 1.284,
+   "frac_none": 0.088
+  },
+  "8": {
+   "mean_overlapping": 5.26,
+   "frac_none": 0.0
+  },
+  "16": {
+   "mean_overlapping": 21.004,
+   "frac_none": 0.0
+  },
+  "32": {
+   "mean_overlapping": 84.104,
+   "frac_none": 0.0
+  },
+  "64": {
+   "mean_overlapping": 336.384,
+   "frac_none": 0.0
+  }
+ }
+}

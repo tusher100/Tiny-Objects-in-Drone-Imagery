@@ -1,0 +1,7 @@
+{
+ "trials": 200,
+ "checks": 12200,
+ "violations": 0,
+ "median_lam2": 0.274122045161057,
+ "median_empirical_rate": 0.045471683231772045
+}

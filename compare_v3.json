@@ -1,0 +1,53 @@
+{
+ "trunc_and_certificate": {
+  "4": {
+   "columns": 320,
+   "trunc_differs": 0.0,
+   "radius_median": 0.005193286668287289,
+   "radius_q90": 0.012812003485194458,
+   "radius_max": 0.0185878002070931,
+   "certified_at_0p004": 0.56875,
+   "certificate_violations": 0
+  },
+  "8": {
+   "columns": 320,
+   "trunc_differs": 0.003125,
+   "radius_median": 0.0056943266391204376,
+   "radius_q90": 0.014278728173472316,
+   "radius_max": 0.021161679221166945,
+   "certified_at_0p004": 0.628125,
+   "certificate_violations": 0
+  },
+  "16": {
+   "columns": 320,
+   "trunc_differs": 0.0,
+   "radius_median": 0.0050331203224246255,
+   "radius_q90": 0.013399330507281206,
+   "radius_max": 0.02222026855732477,
+   "certified_at_0p004": 0.5875,
+   "certificate_violations": 0
+  },
+  "32": {
+   "columns": 320,
+   "trunc_differs": 0.0,
+   "radius_median": 0.005380776748619646,
+   "radius_q90": 0.01381010751237554,
+   "radius_max": 0.021943083194545344,
+   "certified_at_0p004": 0.578125,
+   "certificate_violations": 0
+  },
+  "64": {
+   "columns": 320,
+   "trunc_differs": 0.0,
+   "radius_median": 0.006327759522511973,
+   "radius_q90": 0.01802667477755491,
+   "radius_max": 0.02544039421636579,
+   "certified_at_0p004": 0.66875,
+   "certificate_violations": 0
+  }
+ },
+ "masked_lambda": {
+  "vartheta": 199957.80468354223,
+  "log10_one_minus_lambda": -43419.98456377964
+ }
+}
